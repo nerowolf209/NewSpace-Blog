@@ -40,6 +40,10 @@ li a:hover {
     text-align: center;
   }
 
+#heading p {
+    color: #fff;
+}
+
 .box{
     max-width: 400px;
     margin: 50px auto;
@@ -62,6 +66,7 @@ h2 {
 p {
     margin: 0;
     padding: 20px;
+    padding-bottom: 30px;
     font-size: 20px;
     font-weight: 200;
     color: #00204a;
@@ -89,18 +94,17 @@ label {
     font-size: 20px;
 }
 button {
-    min-height: 50px;
-    width: 50px;
-    border-radius: 50%;
+    min-height: 30px;
+    width: 80px;
+    border-radius: 10px;
     border-color: transparent;
     background-color: #528cb3;
     color: #fff;
-    font-size: 30px;
-    padding-bottom: 6px;
+    font-size: 20px;
     border-width: 0;
 }
   
-input[type="text"], textarea {
+input[type="text"] {
     text-align: center;
     height: 60px;
     top: 10px;
@@ -112,8 +116,20 @@ input[type="text"], textarea {
 }
 
 textarea {
-    height: 40px;
+    text-align: center;
+    /* height: 60px; */
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 200;
+    width: 313px;
+    resize:vertical;
 }
+
+textarea::-webkit-resizer {
+    display: none;
+  }
 
 textarea:focus {
     outline: none;

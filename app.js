@@ -11,11 +11,10 @@ app.set('view engine','ejs');
 // This is required to use the bodyParser for HTML sites
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const blogData = []
-let data = {"title":"","blog":""};
+const data = [];
 
 app.get("/", function(req,res){
-    res.render("home")
+    res.render("home",{titlePost:data})
 });
 
 app.get("/blog", function(req,res){
@@ -27,7 +26,12 @@ app.get("/about", function(req,res){
 });
 
 app.post("/blog", function(req,res){
-    console.log(req.body)
+    const newBlog = {
+        title: req.body.title,
+        blog: req.body.blog
+      };
+    data.push(newBlog)
+    res.redirect("/")
 })
 
 app.listen(3000, function(){

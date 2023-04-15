@@ -3,15 +3,23 @@
 <%- include("header") -%>
 
 <div class="box" id="heading">
-    <h1>Home page</h1>
+    <h1>Welcome to the home page</h1>
+    <p>Please click on create at the top of the page to start creating your blog</p>
 </div>
 
-<div class="box">
-    <div class="item">
-        <h2>title of post</h2>
-        <p>test</p>
-    </div>
-</div>
+
+        <% if (titlePost.length >= 1) { %>
+            <% for(var i=0; i<titlePost.length; i++) { %>
+                <div class="box">
+                    <div class="item">
+                    <ul><h2><%= titlePost[i].title %>:</h2>
+                        <p><%= titlePost[i].blog %></p>
+                    </ul>
+                </div>
+            </div>
+            <% } %>
+        <% } %>
+
 
 
 
