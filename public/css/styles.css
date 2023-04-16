@@ -104,7 +104,7 @@ label {
 }
 button {
     min-height: 30px;
-    margin-bottom: 10px;
+    margin: 20px auto 10px auto;
     width: 120px;
     border-radius: 10px;
     border-color: transparent;
@@ -112,6 +112,11 @@ button {
     color: #fff;
     font-size: 20px;
     border-width: 0;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 input[type="email"] {
@@ -214,6 +219,15 @@ input[type="text"]:focus {
 .contact button{
     text-align: center;
     margin: auto;
+}
+
+#returnHome {
+    display: flex;
+    justify-content: center;
+}
+
+#returnHome button {
+    margin: 10px;
 }
       
 /* .contact form input, form textarea {

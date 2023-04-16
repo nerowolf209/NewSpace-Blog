@@ -42,10 +42,17 @@ app.get("/contact", function(req,res){
     res.render('contact');
 })
 
-app.post("/contact", function(req,res){
-    console.log(req.body)
-    res.redirect("/");
+app.get("/success", function(req,res){
+    res.render('success');
+
 })
+
+app.post("/contact", function(req,res){
+    console.log(req.body);
+  
+    // Redirect to /success immediately, then redirect to / after 5 seconds
+    res.redirect("/success");
+  });
 
 
 app.post("/blog", function(req,res){
