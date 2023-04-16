@@ -14,7 +14,10 @@
                     <div class="item">
                     <ul>
                         <h2><%= titlePost[i].title %>:</h2>
-                        <p class="truncated"><%= titlePost[i].blog %> </p><a href="/viewBlog/<%= encodeURIComponent(i) %>">read more</a>
+                        <div class="blogPostReview">
+                            <p class="truncated"><%= titlePost[i].blog %> </p>
+                            <a href="/viewBlog/<%= encodeURIComponent(i) %>">read more</a>
+                        </div>
                     </ul>
                 </div>
             </div>

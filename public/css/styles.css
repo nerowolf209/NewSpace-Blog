@@ -52,6 +52,15 @@ li a:hover {
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
+.blogBox {
+        max-width: 600px;
+        margin: 50px auto;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    }
+
+
 h1 {
     color: #fff;
     padding: 10px;
@@ -95,7 +104,8 @@ label {
 }
 button {
     min-height: 30px;
-    width: 80px;
+    margin-bottom: 10px;
+    width: 120px;
     border-radius: 10px;
     border-color: transparent;
     background-color: #528cb3;
@@ -103,7 +113,23 @@ button {
     font-size: 20px;
     border-width: 0;
 }
-  
+
+input[type="email"] {
+    text-align: center;
+    height: 60px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 200;
+    width: 313px;
+}
+
+input[type="email"]:focus {
+    outline: none;
+    box-shadow: inset 0 -3px 0 0 #528cb3;
+}
+
 input[type="text"] {
     text-align: center;
     height: 60px;
@@ -149,13 +175,50 @@ input[type="text"]:focus {
   
 
 .truncated {
-    width: 250px;
+    width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.blogPostReview {
+    display: flex;
+    align-items: center;
+}
 
+.blogPostReview p {
+    margin-right: 10px;
+}
+
+.blogPostReview a {
+    font-weight: bold;
+    color: #00204a;
+    font-size: 18px;
+    text-decoration: none;
+    padding-bottom: 10px;
+}
+
+.blogPostReview a:hover {
+    color: #00204a;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+}
+
+
+.contact {
+    text-align: left;
+    display: block;
+    margin: 20px 20px 10px 20px;
+    padding-left: 20px;
+}
+.contact button{
+    text-align: center;
+    margin: auto;
+}
+      
+/* .contact form input, form textarea {
+    
+} */
 /* footer */
 
 .footer a {

@@ -16,20 +16,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const data = [];
 
 app.get("/", function(req,res){
-    res.render("home",{titlePost:data})
+    res.render("home",{titlePost:data});
 });
 
 app.get("/blog", function(req,res){
-    res.render("createBlog")
+    res.render("createBlog");
 });
 
 app.get("/about", function(req,res){
-    res.render("about")
+    res.render("about");
 });
 
 app.get("/viewBlog/:i",function(req,res){
     const arrayValue = req.params.i;
-    console.log(data)
+    console.log(data);
     if (data[arrayValue]) {
         res.render('viewBlog', { titlePost: data[arrayValue].title, blogPost: data[arrayValue].blog });
       } else {
@@ -38,13 +38,23 @@ app.get("/viewBlog/:i",function(req,res){
     //res.render('viewBlog', {titlePost:data[arrayValue].title,blogPost:data[arrayValue].blog})
 })
 
+app.get("/contact", function(req,res){
+    res.render('contact');
+})
+
+app.post("/contact", function(req,res){
+    console.log(req.body)
+    res.redirect("/");
+})
+
+
 app.post("/blog", function(req,res){
     const newBlog = {
         title: req.body.title,
         blog: req.body.blog
       };
-    data.push(newBlog)
-    res.redirect("/")
+    data.push(newBlog);
+    res.redirect("/");
 })
 
 
