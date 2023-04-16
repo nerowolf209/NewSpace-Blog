@@ -1,8 +1,8 @@
 FROM node:14
 WORKDIR /app
-COPY ["PACKAGE.json", "package-lock.JSON",  "./"]
+COPY package*.json ./
 RUN npm install
 COPY . .
 ENV NODE_ENV=production
-EXPOSE 8080
+EXPOSE 3000
 CMD [ "node", "app.js"]
