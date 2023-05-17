@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 
 // add this back in, when working locally
-//require('dotenv').config({path: __dirname + '/.env'})
+require('dotenv').config({path: __dirname + '/.env'})
 
 
 const app = express();
@@ -19,7 +19,7 @@ app.set('view engine','ejs');
 dbName = "toDoListDB"
 const dbPassword = process.env.DB_PASSWORD;
 const dbUser = process.env.DB_USER;
-const uri = "mongodb+srv://"+dbUser+":"+dbPassword+"@todolistcluster.wbzvvrw.mongodb.net/"+dbName+"?retryWrites=true&w=majority"
+const uri = "mongodb+srv://"+dbUser+":"+dbPassword+"@learningcluster.eufjoqu.mongodb.net/"+dbName+"?retryWrites=true&w=majority"
 
 const client = {
     useNewUrlParser: true,
@@ -44,7 +44,26 @@ mongoose.connect(uri,client)
     console.log("Error while connecting", err);
   })
 
+const blogSchema = ({
+    title: String,
+    blogText: String,
+    user: String 
+})
 
+const Blog = mongoose.model("Blog", blogSchema)
+
+async function createEntry(userblogTitle,userblogText,user=""){
+    console.log(userblogTitle + userblogText)
+
+    const blog = new Blog({
+        title: userblogTitle,
+        blogText: userblogText,
+        user: user
+    })
+
+    await blog.save();
+    console.log("New Blog saved");
+}
 
 
 
@@ -56,7 +75,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const data = [];
 
 app.get("/", function(req,res){
-    res.render("home",{titlePost:data});
+    Blog.find()
+    .then(blog => {
+        console.log(blog.title + blog.blogText)
+        res.render("home",{titlePost:blog});
+    })
+    .catch(error => {
+        console.log(error);
+        res.render("error"); // Render an error page or handle the error in an appropriate way
+      });
+    // res.render("home",{titlePost:data});
 });
 
 app.get("/blog", function(req,res){
@@ -95,14 +123,17 @@ app.post("/contact", function(req,res){
   });
 
 
-app.post("/blog", function(req,res){
+app.post("/blog", async function(req,res){
+    const redirectName = await createEntry(req.body.title,req.body.blog);
+    console.log(redirectName)
+
     const newBlog = {
         title: req.body.title,
         blog: req.body.blog
       };
     data.push(newBlog);
     res.redirect("/");
-})
+});
 
 
 app.listen(3000, function(){

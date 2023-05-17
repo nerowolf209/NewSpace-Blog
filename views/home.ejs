@@ -8,21 +8,18 @@
 </div>
 
 
-        <% if (titlePost.length >= 1) { %>
-            <% for(var i=0; i<titlePost.length; i++) { %>
-                <div class="box">
-                    <div class="item">
-                    <ul>
-                        <h2><%= titlePost[i].title %>:</h2>
-                        <div class="blogPostReview">
-                            <p class="truncated"><%= titlePost[i].blog %> </p>
-                            <a href="/viewBlog/<%= encodeURIComponent(i) %>">read more</a>
-                        </div>
-                    </ul>
-                </div>
+        <% titlePost.forEach(function(titlePost) { %>
+            <div class="box">
+                <div class="item">
+                <ul>
+                    <h2><%= titlePost.title %>:</h2>
+                    <div class="blogPostReview">
+                        <p class="truncated"><%= titlePost.blogText %> </p>
+                    </div>
+                </ul>
             </div>
-            <% } %>
-        <% } %>
+            </div>
+        <% }); %>
 
 
 
