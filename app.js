@@ -77,7 +77,6 @@ const data = [];
 app.get("/", function(req,res){
     Blog.find()
     .then(blog => {
-        console.log(blog.title + blog.blogText)
         res.render("home",{titlePost:blog});
     })
     .catch(error => {
@@ -95,15 +94,17 @@ app.get("/about", function(req,res){
     res.render("about");
 });
 
-app.get("/viewBlog/:i",function(req,res){
-    const arrayValue = req.params.i;
-    console.log(data);
-    if (data[arrayValue]) {
-        res.render('viewBlog', { titlePost: data[arrayValue].title, blogPost: data[arrayValue].blog });
-      } else {
+app.get("/viewBlog/:titlePost",function(req,res){
+    const arrayValue = req.params.titlePost;
+    console.log(arrayValue);
+    Blog.findOne({title:arrayValue})
+    .then(blogPost => {
+        res.render('viewBlog', { titlePost: blogPost.title, blogPost: blogPost.blogText });
+    })
+    .catch(error => {
+        console.log(error);
         res.status(404).send('Blog post not found');
-      }
-    //res.render('viewBlog', {titlePost:data[arrayValue].title,blogPost:data[arrayValue].blog})
+      });
 })
 
 app.get("/contact", function(req,res){
@@ -112,26 +113,17 @@ app.get("/contact", function(req,res){
 
 app.get("/success", function(req,res){
     res.render('success');
-
 })
 
 app.post("/contact", function(req,res){
     console.log(req.body);
-  
     // Redirect to /success immediately, then redirect to / after 5 seconds
     res.redirect("/success");
   });
 
 
 app.post("/blog", async function(req,res){
-    const redirectName = await createEntry(req.body.title,req.body.blog);
-    console.log(redirectName)
-
-    const newBlog = {
-        title: req.body.title,
-        blog: req.body.blog
-      };
-    data.push(newBlog);
+    await createEntry(req.body.title,req.body.blog);
     res.redirect("/");
 });
 

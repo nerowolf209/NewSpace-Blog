@@ -15,6 +15,7 @@
                     <h2><%= titlePost.title %>:</h2>
                     <div class="blogPostReview">
                         <p class="truncated"><%= titlePost.blogText %> </p>
+                        <a href="/viewBlog/<%= encodeURIComponent(titlePost.title) %>">read more</a>
                     </div>
                 </ul>
             </div>
