@@ -1,5 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose")
+
+// add this back in, when working locally
+//require('dotenv').config({path: __dirname + '/.env'})
+
 
 const app = express();
 
@@ -9,6 +14,41 @@ app.use('/viewBlog/css', express.static(__dirname + '/public/css'));
 app.use('/viewBlog/js', express.static(__dirname + '/public/js'));
 
 app.set('view engine','ejs');
+
+// Database setup
+dbName = "toDoListDB"
+const dbPassword = process.env.DB_PASSWORD;
+const dbUser = process.env.DB_USER;
+const uri = "mongodb+srv://"+dbUser+":"+dbPassword+"@todolistcluster.wbzvvrw.mongodb.net/"+dbName+"?retryWrites=true&w=majority"
+
+const client = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    w: 'majority',
+    wtimeoutMS: 10000,
+    retryWrites: true,
+  };
+
+
+
+
+// Mongoose section //
+// Local host
+//mongoose.connect('mongodb://127.0.0.1:27017/'+ dbName);
+
+mongoose.connect(uri,client)
+  .then(() => {
+    console.log("mongoDB connected successfully");
+  })
+  .catch((err) => {
+    console.log("Error while connecting", err);
+  })
+
+
+
+
+
+
 
 // This is required to use the bodyParser for HTML sites
 app.use(bodyParser.urlencoded({ extended: true }));
